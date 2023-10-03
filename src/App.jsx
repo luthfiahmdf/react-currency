@@ -4,14 +4,12 @@ import "./App.css";
 
 function App() {
   const [curr, setCurr] = useState("");
-
   const getCurrency = async () => {
     try {
       const res = await axios.get(
-        import.meta.env.VITE_API_URL +
-          "apikey=" +
-          import.meta.env.VITE_API_KEY +
-          "&symbols=CAD,IDR,CHF,JPY,EUR,GBP"
+        `${import.meta.env.VITE_API_URL}apikey=${
+          import.meta.env.VITE_API_KEY
+        }&symbols=CAD,IDR,CHF,JPY,EUR,GBP`
       );
       setCurr(res.data);
       console.log(res.data);
@@ -19,6 +17,7 @@ function App() {
       console.error(error);
     }
   };
+
   useEffect(() => {
     getCurrency();
   }, []);
@@ -27,7 +26,7 @@ function App() {
   return (
     <>
       <div>
-        <p>BASE = {curr.base}</p>
+        <p>BASE = 1{curr.base}</p>
         <table>
           <tr>
             <th>Currency</th>
